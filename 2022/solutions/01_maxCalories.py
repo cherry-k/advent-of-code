@@ -3,25 +3,12 @@ from aocd.models import Puzzle
 
 # parse the puzzle input data
 def parse(puzzle_input) :
-    # split the string into a list inventoryLines
-    lines=puzzle_input.split('\n')
-    return lines
+    # split the string into a list of lines, then split every line into single numbers and convert them into an integer
+    return [[int(lineNumber) for lineNumber in elfString.split('\n')] for elfString in puzzle_input.split('\n\n')]
 
 def part1(numbers):
-    # create a nested list elfInventory in which each list corresponds to one elf's inventory entries
-    elfInventory = [[]]
-    elfIndex = 0
-    # in inventoryLines, an empty line (just containing '\n') is the delimiter where another elf's entry begins
-    for number in numbers:
-        if number == '':
-            elfIndex += 1
-            elfInventory.append([])
-        else:
-            elfInventory[elfIndex].append(int(number))
     # calculate the sum total of each elf's calories, save in the list ElfCaloriesSum
-    elfCaloriesSum = []
-    for elfCalories in elfInventory:
-        elfCaloriesSum.append(sum(elfCalories))
+    elfCaloriesSum = [sum(e) for e in numbers]
     print(elfCaloriesSum)
     # get the biggest entry in elfCaloriesSum, save in the variable maxElfCalories
     maxElfCalories = max(elfCaloriesSum)
