@@ -16,8 +16,6 @@ def test_parse_example1(example1):
 def test_part1_example1(example1):
     assert maxCalories.part1(example1) == 24000
 
-@pytest.mark.skip(reason="Not implemented")
-
 def test_part2_example1(example1):
     """Test part 2 on example input."""
-    assert maxCalories.part2(example1) == ...
+    assert maxCalories.part2(example1) == 45000
