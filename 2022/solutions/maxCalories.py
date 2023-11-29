@@ -8,9 +8,7 @@ def parse(puzzle_input) :
 
 def part1(numbers):
     # calculate the sum total of each elf's calories, save in the list ElfCaloriesSum
-    elfCaloriesSum = [sum(e) for e in numbers]
-    print(elfCaloriesSum)
-    # get the biggest entry in elfCaloriesSum, save in the variable maxElfCalories
+    elfCaloriesSum = [sum(e) for e in numbers]    # get the biggest entry in elfCaloriesSum, save in the variable maxElfCalories
     maxElfCalories = max(elfCaloriesSum)
     return(maxElfCalories)
 
@@ -18,4 +16,4 @@ if __name__ == '__main__':
     puzzle = Puzzle(year=2022, day=1)
     puzzle_input = puzzle.input_data
     lines = parse(puzzle_input)
-    print (part1(lines))
+    print(part1(lines))
