@@ -12,10 +12,8 @@ def example1():
 def test_parse_example1(example1):
     assert example1 == ['1abc2', 'pqr3stu8vwx', 'a1b2c3d4e5f', 'treb7uchet']
 
-@pytest.mark.skip(reason="Not implemented")
-
 def test_part1_example1(example1):
-    assert trebuchet.part1(example1) == [12, 38, 15, 77]
+    assert trebuchet.part1(example1) == 142
 
 @pytest.mark.skip(reason="Not implemented")
 
