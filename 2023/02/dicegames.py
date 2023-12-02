@@ -10,7 +10,8 @@ def parse(puzzle_input) :
     #                         for elfString in puzzle_input.split('\n\n')])
     game_data = []
     for game in puzzle_input.split('\n'):
-        draws = re.split('; |: |\*|\n', game)
+        #draws = re.split('; |, |\*|\n', game.split(': ')[1])
+        draws = game.split(': ')[1]
         game_data.append(draws)
     return game_data
 
@@ -18,12 +19,15 @@ def isValid(game):
     blue_total = 14
     red_total = 12
     green_total = 13
-    for draw in game:
-        blue_dice = int(re.findall(r'(\d+) blue', draw)[0]) if 'blue' in draw else 0
-        green_dice = int(re.findall(r'(\d+) green', draw)[0]) if 'green' in draw else 0
-        red_dice = int(re.findall(r'(\d+) red', draw)[0]) if 'red' in draw else 0
-        if blue_dice > blue_total or green_dice > green_total or red_dice > red_total:
-            return False
+    blue_dice = re.findall(r'(\d+) blue', game) if 'blue' in game else 0
+    if sum([int(i) for i in blue_dice]) > blue_total:
+        return False
+    green_dice = re.findall(r'(\d+) green', game) if 'green' in game else 0
+    if sum([int(i) for i in green_dice]) > green_total:
+        return False
+    red_dice = re.findall(r'(\d+) red', game) if 'red' in game else 0
+    if sum([int(i) for i in red_dice]) > red_total:
+        return False
     return True
 
 def part1(game_data):
@@ -37,9 +41,12 @@ def part2(game_data):
     # in each game, find out the maximum number of dice of each color
     game_powers = []
     for game in game_data:
-        blue_max = max([int(re.findall(r'(\d+) blue', draw)[0]) if 'blue' in draw else 0 for draw in game])
-        green_max = max([int(re.findall(r'(\d+) green', draw)[0]) if 'green' in draw else 0 for draw in game])
-        red_max = max([int(re.findall(r'(\d+) red', draw)[0]) if 'red' in draw else 0 for draw in game])
+        blue_dice = re.findall(r'(\d+) blue', game) if 'blue' in game else 0
+        blue_max = max([int(i) for i in blue_dice])
+        green_dice = re.findall(r'(\d+) green', game) if 'green' in game else 0
+        green_max = max([int(i) for i in green_dice])
+        red_dice = re.findall(r'(\d+) red', game) if 'red' in game else 0
+        red_max = max([int(i) for i in red_dice])
         game_powers.append(blue_max*green_max*red_max)
     return sum(game_powers)
 
