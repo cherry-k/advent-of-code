@@ -14,9 +14,8 @@ def test_parse_example1(example1):
     assert example1 == []
 
 def test_part1_example1(example1):
-    assert engineParts.part1(example1) == 4
+    assert engineParts.part1(example1) == 4361
 
-@pytest.mark.skip(reason="Not implemented")
 def test_part2_example1(example1):
     """Test part 2 on example input."""
-    assert engineParts.part2(example1) == 45000
+    assert engineParts.part2(example1) == 467835
