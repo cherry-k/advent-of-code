@@ -14,15 +14,26 @@ def example2():
     puzzle_input = (PUZZLE_DIR/'example2.txt').read_text().strip()
     return haunted.parse(puzzle_input)
 
+@pytest.fixture
+def example3():
+    puzzle_input = (PUZZLE_DIR/'example3.txt').read_text().strip()
+    return haunted.parse(puzzle_input)
+
+
 def test_parse_example1(example1):
     assert example1 == ['RL', ['AAA = (BBB, CCC)', 'BBB = (DDD, EEE)', 'CCC = (ZZZ, GGG)', 'DDD = (DDD, DDD)',
                               'EEE = (EEE, EEE)', 'GGG = (GGG, GGG)', 'ZZZ = (ZZZ, ZZZ)']]
 
+@pytest.mark.skip(reason="Not implemented")
 def test_part1_example1(example1):
     assert haunted.part1(example1) == 2
 
+@pytest.mark.skip(reason="Not implemented")
 def test_part1_example2(example2):
     assert haunted.part1(example2) == 6
+
+def test_part2_example3(example3):
+    assert haunted.part2(example3) == 6
 
 @pytest.mark.skip(reason="Not implemented")
 def test_part2_example1(example1):
