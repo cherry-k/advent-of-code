@@ -13,7 +13,7 @@ def fill_lines(line):
         for idx in range(0, len(lines[-2])-1):
             lines[-1].append(lines[-2][idx+1]-lines[-2][idx])
     return lines
-def extrapolate(line):
+def extrapolate_right(line):
     filled_lines = fill_lines(line)
     # add a 0 to the last line
     filled_lines[-1].append(0)
@@ -24,21 +24,35 @@ def extrapolate(line):
         line.append(line[-1]+filled_lines[idx][-1])
     extrapolated_value = filled_lines[-1][-1]
     return extrapolated_value
+def extrapolate_left(line):
+    filled_lines = fill_lines(line)
+    # add a 0 to the last line
+    filled_lines[-1].append(0)
+    # reverse list
+    filled_lines = list(reversed(filled_lines))
+    # append (last element - last element of line above)
+    for idx, line in enumerate(filled_lines[1:]):
+        line.insert(0, line[0] - filled_lines[idx][0])
+    extrapolated_value = filled_lines[-1][0]
+    return extrapolated_value
+
 
 def part1(lines):
     sum_extrapolated_values = 0
     for line in lines:
-        sum_extrapolated_values += extrapolate(line)
+        sum_extrapolated_values += extrapolate_right(line)
     return sum_extrapolated_values
 
 def part2(lines):
-    ...
-    return 0
+    sum_extrapolated_values = 0
+    for line in lines:
+        sum_extrapolated_values += extrapolate_left(line)
+    return sum_extrapolated_values
 
 if __name__ == "__main__":
     puzzle = Puzzle(year=YEAR, day=DAY)
     puzzle_input = puzzle.input_data
     lines = parse(puzzle_input)
-    print(part1(lines))
-    #print(part2(lines))
+    #print(part1(lines))
+    print(part2(lines))
     

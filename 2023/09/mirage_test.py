@@ -15,7 +15,6 @@ def test_parse_example1(example1):
 def test_part1_example1(example1):
     assert mirage_maintenance.part1(example1) == 114
 
-@pytest.mark.skip(reason="Not implemented")
 def test_part2_example1(example1):
     """Test part 2 on example input."""
-    assert mirage_maintenance.part2(example1) == ...
+    assert mirage_maintenance.part2(example1) == 2
